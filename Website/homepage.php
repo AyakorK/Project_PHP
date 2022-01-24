@@ -1,20 +1,12 @@
-<?php
-
-  
-
-?>
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="fr">
     <head>
-      <meta charset="utf-8">
-      <title>Titre de la page</title>
-      <link rel="stylesheet" href="assets/style.css">
-      <script src="script.js"></script>
+        <meta charset="utf-8">
+        <title>Homepage</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
     </head>
     <body>
-    <h1> Petit Comptable</h1>
-    <h2>Bienvenue sur le site de petit comptable</h2>
-    <button class="connect" onclick="window.location.href='login.php'">Se connecter</button>
-    <button class="register" onclick="window.location.href='register.php'">S'inscrire</button>
+        <button onclick="window.location.href='bankAccount.php'">Créer un compte</button>
     </body>
     </html>
