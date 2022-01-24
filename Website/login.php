@@ -10,7 +10,7 @@
     <script src="script.js"></script>
 </head>
 <body>
-<form method="GET" action="login.php">
+<form method="POST" action="login.php">
     <p>
         <span>Login</span>
     </p>
