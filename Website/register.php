@@ -1,5 +1,6 @@
 <?php
 
+
 ?>
     <!DOCTYPE html>
     <html lang="fr">
@@ -19,7 +20,7 @@
         <input type="password" name="password2" id="password2" placeholder="Confirmez votre mot de passe">
         <label> Email </label>
         <input type="email" name="email" id="email" placeholder="Entrez votre email">
-        <input type="submit" value="S'inscrire">
+        <button class="BRegister"> S'inscrire </button>
     </form>
     </body>
     </html>
