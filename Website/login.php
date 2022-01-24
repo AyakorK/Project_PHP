@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form method="POST" action="gestionLogin.php">
+<form method="POST" action="homepage.php">
 
     <p>
         <span>Login</span>
