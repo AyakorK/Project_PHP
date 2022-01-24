@@ -11,7 +11,7 @@
         <script src="script.js"></script>
     </head>
     <body>
-    <form>
+    <form method="POST" action="Functions/insertRegister.php">
         <label> Utilisateur </label>
         <input type="text" name="user" id="user" placeholder="Entrez votre nom d'utilisateur">
         <label> Mot de passe </label>
@@ -20,7 +20,7 @@
         <input type="password" name="password2" id="password2" placeholder="Confirmez votre mot de passe">
         <label> Email </label>
         <input type="email" name="email" id="email" placeholder="Entrez votre email">
-        <button class="BRegister"> S'inscrire </button>
+        <button class="BRegister" name="submitRegister" id="submitRegister"> S'inscrire </button>
     </form>
     </body>
     </html>
