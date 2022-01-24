@@ -10,7 +10,7 @@
         <script src="script.js"></script>
     </head>
     <body>
-    <form>
+    <form class="login">
         <label> Utilisateur </label>
         <input type="text" name="user" id="user">
         <label> Mot de passe </label>
