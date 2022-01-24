@@ -15,7 +15,7 @@
         <input type="text" name="user" id="user">
         <label> Mot de passe </label>
         <input type="password" name="password" id="password">
-        <input type="submit" value="Connexion">
+        <button class="Bconnect"> Connexion </button>
     </form>
     </body>
     </html>
