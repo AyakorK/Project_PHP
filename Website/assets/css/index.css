@@ -1,0 +1,51 @@
+/* Homepage CSS */
+
+body {
+    /* Put the image in the center of the page */
+    background-image: url("../../src/raining-money-2.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Center all elements */
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(177, 0, 168);
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(255, 0, 234);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 60px;
+}
+
+button {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(5, 153, 0);
+    background-color: #ffe600;
+    border: none;
+    box-shadow: 0 0 30px black;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+button:hover {
+    background-color: #ffeb7c;
+    cursor: pointer;
+}
