@@ -7,7 +7,7 @@
         <script src="script.js"></script>
     </head>
     <body>
-        <form method="POST" >
+        <form method="POST" action="Functions/insertRegister.php">
                 <label> Nom de compte </label>
                 <input type="text" name="accountName" id="accountName" placeholder="Entrez le nom de votre compte">
 
