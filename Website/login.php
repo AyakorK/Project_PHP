@@ -10,7 +10,9 @@
     <script src="script.js"></script>
 </head>
 <body>
-<form method="POST" action="login.php">
+
+<form method="POST" action="gestionLogin.php">
+
     <p>
         <span>Login</span>
     </p>
@@ -18,7 +20,7 @@
     <input type="text" name="user" id="user">
     <label> Mot de passe </label>
     <input type="password" name="password" id="password">
-    <input type="submit" value="Connexion">
+    <input type="submit" name='submitLogin' value="Connexion">
 </form>
 </body>
 </html>
