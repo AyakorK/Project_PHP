@@ -15,7 +15,11 @@ if (isset($_POST['submitRegister'])){
     $password2 = $_POST['password2'];
 
     $validEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
-    $validPassword;
+    $lengthPassword = strlen($password);
+
+
+
+    
     
 
     // Verify is the email already in the database and return true if it exists otherwise return false
@@ -25,19 +29,9 @@ if (isset($_POST['submitRegister'])){
 
 
     // Verify is the email is valid
-    if (!$validEmail) {
-        echo '<script>alert("E-mail is incorrect");</script>';
-        header("Refresh: 0.5; url=../register.php");
-    }
 
-    //Verify is the password is valid
-    if (strlen($password) < 8 && strlen($password > 20)) {
-        echo '<script>alert("Password is incorrect");</script>';
-        header("Refresh: 0.5; url=../register.php");
-        $validPassword = false;
-    } else {
-        $validPassword = true;
-    }
+
+    validPassword();
 
 
 //Préparation de la requête sql
@@ -51,7 +45,7 @@ if (isset($_POST['submitRegister'])){
 //    $req = $db->prepare("INSERT INTO bankAccount (accountId, userID, accountName, accountType, soldAccount, currency) VALUES (:accountId, :userID, :accountName , :accountType, :soldAccount, :currency);");
 //    $req->execute(array("accountId"=>'1', "userID"=>'1', "accountName"=>$_POST['accountName'], "accountType"=>$_POST['accountType'], "SoldAccount"=>$_POST['accountSold'], "currency"=>$_POST['accountCurrency']));
 //    echo 'fini';
-    if($password == $password2 && !$emailExists && $validEmail && $validPassword) {
+    if($password == $password2 && !$emailExists && $validEmail && validPassword()) {
         $req = $db->prepare("INSERT INTO User (emailUser, passwordUser) VALUES (:emailUser, :passwordUser);");
         echo '<script>alert("Account has been created");</script>';
         $req->execute(array("emailUser"=>$email, "passwordUser"=>$password));
@@ -68,9 +62,17 @@ if (isset($_POST['submitRegister'])){
         // Alert that email is not valid then redirect back to register page
         echo '<script>alert("E-mail is incorrect");</script>';
         header("Refresh: 0.5; url=../register.php");
-    } else if (!$validPassword) {
+    } else if (!validPassword() && $lengthPassword < 8) {
         // Alert that password is not valid then redirect back to register page
-        echo '<script>alert("Password is incorrect");</script>';
+        echo '<script>alert("Password must be at least 8 characters long");</script>';
+        header("Refresh: 0.5; url=../register.php");
+    } else if (!validPassword() && $lengthPassword > 20) {
+        // Alert that password is not valid then redirect back to register page
+        echo '<script>alert("Password must be at most 20 characters long");</script>';
+        header("Refresh: 0.5; url=../register.php");
+    } else {
+        // Alert that something went wrong then redirect back to register page
+        echo '<script>alert("Something went wrong");</script>';
         header("Refresh: 0.5; url=../register.php");
     }
     }
@@ -79,5 +81,13 @@ if (isset($_POST['submitRegister'])){
 register();
 
 
+function validPassword() {
+    $password = $_POST['password'];
+    $lengthPassword = strlen($password);
 
-
+    if ($lengthPassword < 8 || $lengthPassword > 20) {
+        return false;
+    } else {
+        return true;
+    }
+}
