@@ -13,7 +13,7 @@
     <body>
     <form method="POST" action="Functions/insertRegister.php">
         <label> E-mail </label>
-        <input type="email" name="email" id="email" placeholder="Entrez votre email">
+        <input type="text" name="email" id="email" placeholder="Entrez votre email">
         <label> Password </label>
         <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe">
         <label> Confirm password </label>
