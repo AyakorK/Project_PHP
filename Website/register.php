@@ -12,13 +12,13 @@
     </head>
     <body>
     <form method="POST" action="Functions/insertRegister.php">
-        <label> Email </label>
+        <label> E-mail </label>
         <input type="email" name="email" id="email" placeholder="Entrez votre email">
-        <label> Mot de passe </label>
+        <label> Password </label>
         <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe">
-        <label> Confirmer le mot de passe </label>
+        <label> Confirm password </label>
         <input type="password" name="password2" id="password2" placeholder="Confirmez votre mot de passe">
-        <button class="BRegister" name="submitRegister" id="submitRegister"> S'inscrire </button>
+        <button class="BRegister" name="submitRegister" id="submitRegister"> Register </button>
     </form>
     </body>
     </html>

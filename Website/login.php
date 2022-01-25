@@ -7,14 +7,14 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <form method="POST" action="homepage.php">
+    <form method="POST" action="Functions/loginFunction.php">
         <div class="formText">
-            <label> Utilisateur </label>
-            <input type="text" name="user" id="user">
+            <label> E-mail </label>
+            <input type="text" name="emailLogin" id="emailLogin">
         </div>
         <div class="formText">
-            <label> Mot de passe </label>
-            <input type="password" name="password" id="password">
+            <label> Password </label>
+            <input type="password" name="passwordLogin" id="passwordLogin">
         </div>
         <div class="formText">
             <input type="submit" name='submitLogin' value="Connexion">
