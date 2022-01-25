@@ -39,7 +39,7 @@ if (isset($_POST['submitRegister'])){
     }  else if ($email) {
         // Alert that email already exists then redirect back to register page
         echo '<script>alert("Email has been already registered !");</script>';
-        header("Refresh: 5; url=../register.php");
+        header("Refresh: .5; url=../register.php");
     } else if ($password != $password2){
         // Alert that password are not matching then redirect back to register page
         echo '<script>alert("Passwords are not matching");</script>';
