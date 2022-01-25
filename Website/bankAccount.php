@@ -2,12 +2,12 @@
     <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Titre de la page</title>
+        <title>Create Bank Account</title>
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
     </head>
     <body>
-        <form method="POST" action="Functions/insertRegister.php">
+        <form method="POST" action="Functions/insertBankAccount.php">
                 <label> Nom de compte </label>
                 <input type="text" name="accountName" id="accountName" placeholder="Entrez le nom de votre compte">
 
