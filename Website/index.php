@@ -3,7 +3,7 @@
       <head>
         <meta charset="utf-8">
         <title>Petiot Comptable</title>
-        <link rel="stylesheet" href="assets/css/homepage.css">
+        <link rel="stylesheet" href="assets/css/index.css">
         
       </head>
       <body>
