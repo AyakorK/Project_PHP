@@ -20,9 +20,15 @@ if ($emailExists == true) {
 
     // If the password is correct
     if ($passwordCorrect) {
-        // Create a session with the user's mail
+        // Create a session with the user's email
         session_start();
         $_SESSION['email'] = $emailLogin;
+
+        // Find userID in database
+        $req = $db->prepare("SELECT userID FROM User WHERE emailUser = :email");
+        $req->execute(array(":email"=>$emailLogin));
+        $actualUserID = $req->fetch();
+        $_SESSION['actualUserID'] = htmlspecialchars($actualUserID['userID']);
 
         // Redirect the user to the home page
         header("Location: ../homepage.php");
