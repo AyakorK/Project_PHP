@@ -7,7 +7,7 @@
         <script src="script.js"></script>
     </head>
     <body>
-        <button onclick="window.location.href='bankAccount.php'">Créer un compte</button>
+        <button onclick="window.location.href='bankAccount.php'">Create new bank account</button>
         <form method="POST" action="Functions/deleteAccount.php">
         <input type="submit" name="deleteAccount" id="deleteAccount" value="Supprimer un compte">
         </form>

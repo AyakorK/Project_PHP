@@ -28,10 +28,10 @@ function insertBankAccount()
                 "accountType" => $accType,
                 "soldAccount" => $SoldAccount,
                 "currency" => $accCurrency));
-            echo 'fini';
+            echo 'Success';
 
         }else{
-            echo 'marche pas';
+            echo 'Error';
         }
 
     }

@@ -8,20 +8,20 @@
     </head>
     <body>
         <form method="POST" action="Functions/insertBankAccount.php">
-                <label> Nom de compte </label>
-                <input type="text" name="accountName" id="accountName" placeholder="Entrez le nom de votre compte">
+                <label> Bank account name </label>
+                <input type="text" name="accountName" id="accountName" placeholder="Enter your bank account name">
 
-            <label> Type du compte </label>
+            <label> Account type </label>
             <select name="accountType">
                 <option value="courant">Courant</option>
                 <option value="epargne">Epargne</option>
                 <option value="compteJoint">Compte joint</option>
             </select>
 
-            <label> Solde du compte </label>
+            <label> Account sold </label>
             <input type="text" name="accountSold" id="accountSold" placeholder="Entrez votre sold">
 
-            <label> Devide du compte </label>
+            <label> Account currency </label>
             <select name="accountCurrency">
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
