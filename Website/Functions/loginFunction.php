@@ -20,9 +20,10 @@ if ($emailExists == true) {
 
     // If the password is correct
     if ($passwordCorrect) {
-        // Create a session with the user's email
+        // Create a session with the user's mail
         session_start();
         $_SESSION['email'] = $emailLogin;
+
         // Redirect the user to the home page
         header("Location: ../homepage.php");
     } else {

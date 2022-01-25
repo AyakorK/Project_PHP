@@ -8,5 +8,9 @@
     </head>
     <body>
         <button onclick="window.location.href='bankAccount.php'">Créer un compte</button>
+        <form method="POST" action="Functions/deleteAccount.php">
+        <input type="submit" name="deleteAccount" id="deleteAccount" value="Supprimer un compte">
+        </form>
+
     </body>
     </html>
