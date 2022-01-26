@@ -12,7 +12,7 @@
             
     
             foreach ($result as $row) {
-                echo '<option value="'.$row['accountName'].'">'.$row['accountName'].' : '.$row['soldAccount'].' '.$row['currency'].' </option>';
+                echo '<option value="'.$row['accountID'].'">'.$row['accountName'].' : '.$row['soldAccount'].' '.$row['currency'].' </option>';
             }
             }   
             ?>

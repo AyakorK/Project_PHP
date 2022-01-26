@@ -18,7 +18,7 @@ function insertBankAccount()
         //Préparation de la requête sql
         $req = $db->query("SELECT COUNT(*) FROM bankAccount WHERE userId = $actualUserID")->fetchColumn();
 
-        var_dump('avant '. $req);
+        
 
         if($req < 10){
             $req = $db->prepare('INSERT INTO bankAccount (userID, accountName, accountType, soldAccount, currency) VALUES (:userID, :accountName , :accountType, :soldAccount, :currency)');
@@ -28,10 +28,12 @@ function insertBankAccount()
                 "accountType" => $accType,
                 "soldAccount" => $SoldAccount,
                 "currency" => $accCurrency));
-            echo 'Success';
+            echo '<script>alert("Account has been created");</script>';
+            header("Refresh: .5; url=../homepage.php");
 
         }else{
-            echo 'Error';
+            echo '<script>alert("An error has occurred");</script>';
+            header("Refresh: .5; url=../homepage.php");
         }
 
     }

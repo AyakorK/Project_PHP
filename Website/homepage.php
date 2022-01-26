@@ -19,7 +19,7 @@
     listAccount();
             ?>
     </select>
-    <button onclick="window.location.href='account.php'">Go to this bank account</button>
+    <button onclick="window.location.href='Functions/goToAccount.php'">Go to this bank account</button>
     
 
     
