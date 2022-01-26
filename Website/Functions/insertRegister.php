@@ -49,31 +49,31 @@ if (isset($_POST['submitRegister'])){
         $req = $db->prepare("INSERT INTO User (emailUser, passwordUser) VALUES (:emailUser, :passwordUser);");
         echo '<script>alert("Account has been created");</script>';
         $req->execute(array("emailUser"=>$email, "passwordUser"=>$password));
-        header("Refresh: .5; url=../index.php");
+        header("Refresh: 0.2; url=../index.php");
     }  else if ($emailExists) {
         // Alert that email already exists then redirect back to register page
         echo '<script>alert("Email has been already registered !");</script>';
-        header("Refresh: .5; url=../register.php");
+        header("Refresh: 0.2; url=../register.php");
     } else if ($password != $password2){
         // Alert that password are not matching then redirect back to register page
         echo '<script>alert("Passwords are not matching");</script>';
-        header("Refresh: 0.5; url=../register.php");
+        header("Refresh: 0.2; url=../register.php");
     } else if (!$validEmail) {
         // Alert that email is not valid then redirect back to register page
         echo '<script>alert("E-mail is incorrect");</script>';
-        header("Refresh: 0.5; url=../register.php");
+        header("Refresh: 0.2; url=../register.php");
     } else if (!validPassword() && $lengthPassword < 8) {
         // Alert that password is not valid then redirect back to register page
         echo '<script>alert("Password must be at least 8 characters long");</script>';
-        header("Refresh: 0.5; url=../register.php");
+        header("Refresh: 0.2; url=../register.php");
     } else if (!validPassword() && $lengthPassword > 20) {
         // Alert that password is not valid then redirect back to register page
         echo '<script>alert("Password must be at most 20 characters long");</script>';
-        header("Refresh: 0.5; url=../register.php");
+        header("Refresh: 0.2; url=../register.php");
     } else {
         // Alert that something went wrong then redirect back to register page
         echo '<script>alert("Something went wrong");</script>';
-        header("Refresh: 0.5; url=../register.php");
+        header("Refresh: 0.2; url=../register.php");
     }
     }
 }

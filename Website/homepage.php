@@ -12,7 +12,7 @@
     </head>
     <body>
         <button onclick="window.location.href='bankAccount.php'">Create new bank account</button>
-        <form method="POST" action="Functions/deleteAccount.php">
+        <form method="POST" action="Functions/deleteAccount.php" id="deleteButton" onsubmit="if(confirm('Are you sure ?')){return true;}else{return false;}">
         <input type="submit" name="deleteAccount" id="deleteAccount" value="Delete this account" />
         </form>   
     <div>
