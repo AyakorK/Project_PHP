@@ -28,11 +28,11 @@ function insertBankAccount()
                 "accountType" => $accType,
                 "soldAccount" => $SoldAccount,
                 "currency" => $accCurrency));
-            echo '<script>alert("Account has been created");</script>';
+            echo "<script>alert('" . $accName . " has been created');</script>" ;
             header("Refresh: .5; url=../homepage.php");
 
         }else{
-            echo "<script>alert('" . $accName . "a été supprimé')</script>" ;
+            echo "<script>alert('" . $accName . " has been declined');</script>" ;
             header("Refresh: .5; url=../homepage.php");
         }
 
