@@ -10,7 +10,6 @@ try {
 
 // Get the user's id and the account's id from the database
 $userID = $_SESSION['actualUserID'];
-
 $thisAccountID = $_SESSION['actualBankID'];
 
 if (isset($_GET['id'])) { // If the user clicked on the "Delete" button

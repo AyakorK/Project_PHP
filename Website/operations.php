@@ -18,7 +18,7 @@
     require_once 'Functions/listOperations.php';
     $result = listOperations();
     foreach ($result as $row) {
-        //echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].' '.$row['operationDate'].'</p>';
+        echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].' '.$row['operationDate'].'</p>';
         echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
         echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
     }
