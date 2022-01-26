@@ -15,12 +15,13 @@ function insertBankAccount()
         $accCurrency = $_POST['accountCurrency'];
 
 
-        //Préparation de la requête sql
+        //  Sum of all userID banks
         $req = $db->query("SELECT COUNT(*) FROM bankAccount WHERE userId = $actualUserID")->fetchColumn();
 
         
-
+        //  To avoid user have more than 10 bank account
         if($req < 10){
+            //  Insert values in database
             $req = $db->prepare('INSERT INTO bankAccount (userID, accountName, accountType, soldAccount, currency) VALUES (:userID, :accountName , :accountType, :soldAccount, :currency)');
             $req->execute(array(
                 "userID" => $actualUserID,
