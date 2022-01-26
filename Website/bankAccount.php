@@ -1,3 +1,7 @@
+<?php
+    require_once 'Functions/Verification.php';
+?>
+
 <!DOCTYPE html>
     <html lang="fr">
     <head>
