@@ -10,9 +10,6 @@
             $req->execute();
             $result = $req->fetchAll();
             
-    
-            foreach ($result as $row) {
-                echo '<option value="'.$row['accountID'].'">'.$row['accountName'].' : '.$row['soldAccount'].' '.$row['currency'].' </option>';
-            }
+            return $result;
             }   
             ?>

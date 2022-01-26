@@ -16,7 +16,10 @@
         <select name="account" id="account">
          <?php
     require_once 'Functions/listAccount.php';
-    listAccount();
+    $result = listAccount();
+    foreach ($result as $row) {
+        echo '<option value="'.$row['accountID'].'">'.$row['accountName'].' : '.$row['soldAccount'].' '.$row['currency'].' </option>';
+    }
     $thisAccount = $_POST['accountID'];
     
             ?>
