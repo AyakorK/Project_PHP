@@ -1,4 +1,5 @@
 <?php
+require_once 'Verification.php';
 // When the button to go to the account is clicked, stock the ID of the account in a variable
 // and redirect the user to the account page
 if (isset($_POST['goToThisAccount'])){
