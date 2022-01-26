@@ -25,12 +25,12 @@ if (isset($_GET['id'])) { // If the user clicked on the "Delete" button
 
     // Update the account's balance if the operation was a credit else it's a debit
     if ($accountData['categoryType'] == "credit") {
-        $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount + :operationAmount WHERE accountID = :accountID");
+        $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
         $query->execute(array(
             ":operationAmount"  => $accountData['operationAmount'],
             ":accountID"        => $accountData['accountID']));
     } else {
-        $query = $db->prepare(  "UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
+        $query = $db->prepare(  "UPDATE bankAccount SET soldAccount = soldAccount + :operationAmount WHERE accountID = :accountID");
         $query->execute(array(
             ":operationAmount"  => $accountData['operationAmount'],
             ":accountID"        => $accountData['accountID']));
