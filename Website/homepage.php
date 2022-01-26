@@ -9,8 +9,22 @@
     <body>
         <button onclick="window.location.href='bankAccount.php'">Create new bank account</button>
         <form method="POST" action="Functions/deleteAccount.php">
-        <input type="submit" name="deleteAccount" id="deleteAccount" value="Supprimer un compte">
-        </form>
+        <input type="submit" name="deleteAccount" id="deleteAccount" value="Delete this account" />
+        </form>   
+    <div>
+        <select>
+         
+         <?php
+    require_once 'Functions/listAccount.php';
+    listAccount();
+            ?>
+    </select>
+    <button onclick="window.location.href='account.php'">Go to this bank account</button>
+    
 
+    
+    </div>
+
+        
     </body>
     </html>
