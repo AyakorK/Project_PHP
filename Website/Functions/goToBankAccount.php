@@ -1,5 +1,20 @@
 <?php
 require_once 'Verification.php';
+
+if (isset($_POST['goToThisAccount'])){
+
+    $thisAccountID = filter_input(INPUT_POST, 'account', FILTER_SANITIZE_STRING);
+    $_SESSION['actualBankID'] = htmlspecialchars($thisAccountID);
+
+
+// Take the infos of the actual account by using the accountID parameter
+    require_once 'database.php';
+    $db = dbConnect();
+    $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
+    $req->execute(array(":thisAccountID"=>$thisAccountID));
+    $account = $req->fetch();
+}
+
 require_once 'bankAccountFunctions.php';
 knowBankData();
 ?>
