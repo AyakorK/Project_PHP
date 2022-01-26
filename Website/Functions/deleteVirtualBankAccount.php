@@ -1,30 +1,32 @@
 <?php
 
-// Connexion à la base de données
+// Connect to database
 try {
-    session_start();
-    include_once 'database.php';
-    $db = dbConnect();
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
+    session_start(); // Start session
+    include_once 'database.php'; // Include database connection
+    $db = dbConnect();  // Connect to database
+} catch (Exception $a) {
+    die('Erreur : ' . $a->getMessage());
 }
 
-// Récupération des données du formulaire
-$userID = $_SESSION['actualUserID'];
-$accountSelected = $_POST['accountID'];
+// Get the user's id and the account's id from the database
+    $userID = $_SESSION['actualUserID'];
+    $thisAccountID = $_SESSION['actualBankID'];
 
-if (isset($_POST['accountID'])) {
+if (isset($_POST['deleteBankAccount'])) { // If the user clicked on the "Delete" button
 
-    $req = $db->prepare("SELECT accountName FROM bankAccount WHERE bankAccount.accountID = :accountID");
-    $req->bindParam(':accountID', $accountSelected);
+    // Get the name of the bank account to delete
+    $req = $db->prepare("SELECT accountName FROM bankAccount WHERE accountID = :accountID");
+    $req->bindParam(':accountID', $thisAccountID);
     $req->execute();
-    $accountName = $req->fetch();
-
-    $query = $db->prepare("DELETE FROM bankAccount WHERE accountID =:accountID LIKE userID = :userID");
-    $query->execute(array(":accountID"=>$accountSelected, ":userID"=>$userID));
+    $dataAccount = $req->fetchAll();
 
 
-    echo "<script>alert('.$accountName. a été supprimé')</script>";
-    header( "Refresh: 0.5; url=../homepage.php" ) ;
+    // Delete the bank account
+    $query = $db->prepare("DELETE FROM bankAccount WHERE accountID = :accountID");
+    $query->execute(array(":accountID"=>$thisAccountID));
+
+    echo "<script>alert('" . $dataAccount[0]['accountName'] . "a été supprimé')</script>";
+    //header( "Refresh: 0.5; url=../homepage.php" ) ;
 
 }

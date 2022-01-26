@@ -34,7 +34,7 @@ echo $account['currency'];
 <body>
     <!-- Afficher les informations de ce compte bancaire à partir du select de homepage -->
     <button onclick="window.location.href='operations.php'">Operations</button>
-    <form method="POST" action="Functions/deleteBankAccount.php">
+    <form method="POST" action="deleteVirtualBankAccount.php">
         <input type="submit" name="deleteBankAccount" id="deleteBankAccount" value="Delete this bank account" />
     </form>
 
