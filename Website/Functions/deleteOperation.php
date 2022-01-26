@@ -10,50 +10,39 @@ try {
 
 // Get the user's id and the account's id from the database
 $userID = $_SESSION['actualUserID'];
-$thisOperationID = $_SESSION['actualOperationID'];
+
 $thisAccountID = $_SESSION['actualBankID'];
 
-if (isset($_POST['deleteOperation'])) { // If the user clicked on the "Delete" button
+if (isset($_GET['id'])) { // If the user clicked on the "Delete" button
+    $thisOperationID = $_GET['id'];
 
-    // Get the category number of the operation to delete and determine if it's a credit or a debit
-    $req = $db->prepare('SELECT categoryID FROM Operation WHERE operationID = :operationID');
-    $req->bindParam(':operationID', $thisOperationID);
-    $req->execute();
-    $categoryNumber = $req->fetchAll();
-
-    // Get the name of the operation
-    $req = $db->prepare('SELECT categoryName FROM Category WHERE categoryID = :categoryID');
-    $req->bindParam(':categoryID', $categoryNumber);
-    $req->execute();
-    $categoryName = $req->fetchAll();
-
-    // Get the category's type
-    $req = $db->prepare('SELECT categoryType FROM Category WHERE categoryID = :categoryID');
-    $req->bindParam(':categoryID', $categoryNumber);
-    $req->execute();
-    $categoryType = $req->fetchAll();
-
-    // Get the amount of the operation
-    $req = $db->prepare('SELECT operationAmount FROM Operation WHERE operationID = :operationID');
-    $req->bindParam(':operationID', $thisOperationID);
-    $req->execute();
-    $operationAmount = $req->fetchAll();
+    // Get the operation's data from the database
+    $query = $db->prepare(  'SELECT O.*, C.categoryType, C.categoryName FROM Operation as O
+                                    LEFT JOIN Category as C
+                                        ON C.categoryID = O.categoryID
+                                    WHERE O.operationID = :id LIMIT 1;');
+    $query->execute(array('id' => $thisOperationID));
+    $accountData = $query->fetch();
 
     // Update the account's balance if the operation was a credit else it's a debit
-    if ($categoryType == "credit") {
+    if ($accountData['categoryType'] == "credit") {
         $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount + :operationAmount WHERE accountID = :accountID");
-        $query->execute(array(":operationAmount"=>$operationAmount, ":accountID"=>$thisAccountID));
+        $query->execute(array(
+            ":operationAmount"  => $accountData['operationAmount'],
+            ":accountID"        => $accountData['accountID']));
     } else {
-        $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
-        $query->execute(array(":operationAmount"=>$operationAmount, ":accountID"=>$thisAccountID));
+        $query = $db->prepare(  "UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
+        $query->execute(array(
+            ":operationAmount"  => $accountData['operationAmount'],
+            ":accountID"        => $accountData['accountID']));
     }
 
     // Delete the Operation from the database
     $query = $db->prepare("DELETE FROM Operation WHERE operationID = :operationID");
-    $query->execute(array(":operationID"=>$thisOperationID));
+    $query->execute(array(":operationID" => $thisOperationID));
 
-    upset($_SESSION['actualOperationID']); // Update the session variable
-    echo "<script>alert('" . $categoryName[0]['accountName'] . "a été supprimé')</script>";
-    //header( "Refresh: 0.5; url=../homepage.php" ) ;
+    unset($_SESSION['actualOperationID']); // Update the session variable
+    echo "<script>alert('" . $accountData['categoryName'] . "a été supprimé')</script>";
+    header( "Refresh: 0.5; url=../homepage.php" ) ;
 
 }

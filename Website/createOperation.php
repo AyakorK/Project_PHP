@@ -11,7 +11,7 @@
     <?php
         session_start();
         $thisAccountID = $_SESSION['actualBankID'];
-
+        $thisOperationID = $_SESSION['actualOperationID'];
     
     
     // Take the infos of the actual account by using the accountID parameter
@@ -20,6 +20,7 @@
     $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
     $req->execute(array(":thisAccountID"=>$thisAccountID));
     $thisAccount = $req->fetch();
+
     // Print the actual sold
     echo $thisAccount['soldAccount'];
     echo $thisAccount['currency'];

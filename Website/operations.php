@@ -13,17 +13,14 @@
     <form method="POST" action="Functions/manageOperations.php">
     <input type="submit" name="addOperation" id="addOperation" value="Add a new operation" />
     </form>
-    <form method="POST" action="Functions/manageOperations.phpp">
-    <input type="submit" name="deleteOperation" id="deleteOperation" value="Delete this operation" />
-    </form>
-    <form method="POST" action="Functions/manageOperations.php">
-    <input type="submit" name="modifyOperation" id="modifyOperation" value="Modify this operation" />
     <div>
          <?php
     require_once 'Functions/listOperations.php';
     $result = listOperations();
     foreach ($result as $row) {
-        echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].' '.$row['operationDate'].'</p>';
+        //echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].' '.$row['operationDate'].'</p>';
+        echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
+        echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
     }
             ?>
 
