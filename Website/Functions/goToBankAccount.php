@@ -2,8 +2,9 @@
 // When the button to go to the account is clicked, stock the ID of the account in a variable
 // and redirect the user to the account page
 if (isset($_POST['goToThisAccount'])){
+    session_start();
     $thisAccountID = filter_input(INPUT_POST, 'account', FILTER_SANITIZE_STRING);
-     
+    $_SESSION['actualBankID'] = htmlspecialchars($thisAccountID);
 
 
 // Take the infos of the actual account by using the accountID parameter
@@ -34,5 +35,9 @@ echo $account['currency'];
     <!-- Afficher les informations de ce compte bancaire à partir du select de homepage -->
     <button onclick="window.location.href='operations.php'">Operations</button>
     <form method="POST" action="Functions/deleteBankAccount.php">
-    <input type="submit" name="deleteBankAccount" id="deleteBankAccount" value="Delete this bank account" />
+        <input type="submit" name="deleteBankAccount" id="deleteBankAccount" value="Delete this bank account" />
+    </form>
+
+    <form method="POST" action="modifyBankAccount.php">
+        <input type="submit" name=modifyBankAccount id="modifyBankAccount" value="Modify this bank account" />
     </form>
