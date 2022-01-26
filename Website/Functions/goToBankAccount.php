@@ -33,11 +33,11 @@ echo $account['currency'];
 </head>
 <body>
     <!-- Afficher les informations de ce compte bancaire à partir du select de homepage -->
-    <button onclick="window.location.href='operations.php'">Operations</button>
+    <button onclick="window.location.href='../operations.php'">Operations</button>
     <form method="POST" action="Functions/deleteBankAccount.php">
         <input type="submit" name="deleteBankAccount" id="deleteBankAccount" value="Delete this bank account" />
     </form>
 
-    <form method="POST" action="modifyBankAccount.php">
+    <form method="POST" action="../modifyBankAccount.php">
         <input type="submit" name=modifyBankAccount id="modifyBankAccount" value="Modify this bank account" />
     </form>
