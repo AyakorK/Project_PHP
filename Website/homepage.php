@@ -12,14 +12,17 @@
         <input type="submit" name="deleteAccount" id="deleteAccount" value="Delete this account" />
         </form>   
     <div>
-        <select>
-         
+    <form method="POST" action="Functions/goToBankAccount.php">
+        <select name="account" id="account">
          <?php
     require_once 'Functions/listAccount.php';
     listAccount();
+    $thisAccount = $_POST['accountID'];
+    
             ?>
     </select>
-    <button onclick="window.location.href='Functions/goToAccount.php'">Go to this bank account</button>
+    <input type="submit" name="goToThisAccount" id="goToThisAccount" value="Go to this bank account"></input>
+    </form>
     
 
     
