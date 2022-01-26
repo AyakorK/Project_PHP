@@ -3,7 +3,8 @@ require_once 'Verification.php';
 // When the button to go to the account is clicked, stock the ID of the account in a variable
 // and redirect the user to the account page
 if (isset($_POST['goToThisAccount'])){
-    session_start();
+
+  //  session_start();
     $thisAccountID = filter_input(INPUT_POST, 'account', FILTER_SANITIZE_STRING);
     $_SESSION['actualBankID'] = htmlspecialchars($thisAccountID);
 
@@ -20,8 +21,6 @@ echo $account['accountType'];
 echo $account['soldAccount'];
 echo $account['currency'];
 }
-
-
 ?>
 
 <!DOCTYPE html>

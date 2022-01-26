@@ -32,7 +32,7 @@ function insertBankAccount()
             header("Refresh: .5; url=../homepage.php");
 
         }else{
-            echo '<script>alert("An error has occurred");</script>';
+            echo "<script>alert('" . $accName . "a été supprimé')</script>" ;
             header("Refresh: .5; url=../homepage.php");
         }
 

@@ -47,7 +47,7 @@ if (isset($_POST['submitRegister'])){
 //    echo 'fini';
     if($password == $password2 && !$emailExists && $validEmail && validPassword()) {
         $req = $db->prepare("INSERT INTO User (emailUser, passwordUser) VALUES (:emailUser, :passwordUser);");
-        echo '<script>alert("Account has been created");</script>';
+        echo '<script>alert("Your Account has been created");</script>';
         $req->execute(array("emailUser"=>$email, "passwordUser"=>$password));
         header("Refresh: 0.2; url=../index.php");
     }  else if ($emailExists) {
