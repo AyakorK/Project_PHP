@@ -19,7 +19,7 @@
             </select>
 
             <label> Account sold </label>
-            <input type="text" name="accountSold" id="accountSold" placeholder="Entrez votre sold">
+            <input type="text" name="accountSold" id="accountSold" placeholder="Enter your account sold">
 
             <label> Account currency </label>
             <select name="accountCurrency">
