@@ -58,7 +58,7 @@ function insertBankAccount()
 
                         }
                         else {
-                            echo "<script>alert('" . $accName . " has been declined');</script>";
+                            echo "<script>alert('" . $accName . " has been declined, You have more than 10 accounts');</script>";
                             header("Refresh: .5; url=../homepage.php");
                         }
                     }else{
