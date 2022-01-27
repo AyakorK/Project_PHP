@@ -13,21 +13,11 @@ if (isset($_POST['addOperation'])){
     header('Location: ../createOperation.php');
 }
 
-
-
-if (isset($_POST['deleteOperation'])){
-    
-}
-
-if (isset($_POST['modifyOperation'])){
-    
-}
-
 if (isset($_POST['addNewOperation'])){
 
     $thisCategoryID = filter_input(INPUT_POST, 'operationTypeName', FILTER_SANITIZE_STRING);
-    $_SESSION['actualOperationID'] = htmlspecialchars($thisCategoryID);
-    echo $_SESSION['actualOperationID'];
+    $_SESSION['actualCategoryID'] = htmlspecialchars($thisCategoryID);
+    echo $_SESSION['actualCategoryID'];
     addOperation();
     updateBankAccount();
 }
@@ -39,7 +29,7 @@ function addOperation() {
     
     $actualUserID = $_SESSION['actualUserID'];
     $actualBankID =  $_SESSION['actualBankID'];
-    $categoryID = $_SESSION['actualOperationID'];
+    $categoryID = $_SESSION['actualCategoryID'];
 
 
     
@@ -55,14 +45,25 @@ function addOperation() {
         'operationDate' => $_POST['operationDate']
     ));
 
-
-        echo "<script>alert('" . $_POST['operationName'] . " has been created');</script>" ;
-       // header("Refresh: .5; url=../homepage.php");
+    // Récupérer l'ID de la dernière opération
+    $req = $db->prepare("SELECT operationID FROM Operation WHERE operationName = :operationName AND operationAmount = :operationAmount AND operationDate = :operationDate AND accountID = :accountID AND categoryID = :categoryID");
+    $req->execute(array(
+        'operationName' => $_POST['operationName'],
+        'operationAmount' => $_POST['operationAmount'],
+        'operationDate' => $_POST['operationDate'],
+        'accountID' => $actualBankID,
+        'categoryID' => $categoryID
+    ));
+    $result = $req->fetch();
+    $_SESSION['actualOperationID'] = $result['operationID'];
 
 }
 
 function updateBankAccount() {
-    $thisOperationID = $_GET['id'];
+    
+    // Get the actual operationID of our operation that we just made
+    $thisOperationID = $_SESSION['actualOperationID'];
+
     $db = dbConnect();
 
     echo $thisOperationID;
@@ -77,14 +78,17 @@ function updateBankAccount() {
 
     // Update the account's balance if the operation was a credit else it's a debit
     if ($accountData['categoryType'] == "credit") {
-        $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
+        $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount + :operationAmount WHERE accountID = :accountID");
         $query->execute(array(
             ":operationAmount"  => $accountData['operationAmount'],
             ":accountID"        => $accountData['accountID']));
     } else {
-        $query = $db->prepare(  "UPDATE bankAccount SET soldAccount = soldAccount + :operationAmount WHERE accountID = :accountID");
+        $query = $db->prepare(  "UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
         $query->execute(array(
             ":operationAmount"  => $accountData['operationAmount'],
             ":accountID"        => $accountData['accountID']));
     }
+
+    echo "<script>alert('" . $_POST['operationName'] . " has been created');</script>" ;
+    header("Refresh: .5; url=../homepage.php");
 }
