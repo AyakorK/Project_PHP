@@ -1,8 +1,15 @@
 /* Homepage CSS */
 
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
 body {
     /* Put the image in the center of the page */
-    background-image: url("../../src/raining-money-2.gif");
+    background-image: url("../../src/homepage.jpg");
+    /* Full height */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -10,42 +17,44 @@ body {
     /* Center all elements */
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     font-size: 3em;
     font-weight: bold;
-    color: rgb(177, 0, 168);
+    color: rgba(0, 128, 202, 0.781);
     text-align: center;
-    margin-top: 10%;
     margin-bottom: 0;
 }
 
 h2 {
     font-size: 2em;
     font-weight: bold;
-    color: rgb(255, 0, 234);
+    color: rgba(0, 39, 122, 0.63);
     text-align: center;
     margin-top: 0;
-    margin-bottom: 60px;
+    margin-bottom: 110px;
 }
 
 button {
     font-size: 1.5em;
+    width: 400px;
     font-weight: bold;
-    color: rgb(5, 153, 0);
-    background-color: #ffe600;
+    color: rgba(61, 24, 163, 0.671);
+    background-color: #dddddd;
     border: none;
     box-shadow: 0 0 30px black;
-    border-radius: 20px;
+    border-radius: 23px;
     padding: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
     margin-left: 50%;
     transform: translateX(-50%);
 }
 
 button:hover {
-    background-color: #ffeb7c;
+    background-color: #ffffff;
     cursor: pointer;
 }
