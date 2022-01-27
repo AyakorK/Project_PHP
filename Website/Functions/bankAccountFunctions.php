@@ -65,3 +65,26 @@ function testInput($inputField){
     //  stripcslashes : string method to delete \ from a string
     //  strip_tags : string method to delete html tags < >
 }
+
+function requireModifyOperation(){
+    // Connect to database
+    try {
+        session_start(); // Start session
+        include_once 'database.php'; // Include database connection
+        $db = dbConnect();  // Connect to database
+    } catch (Exception $a) {
+        die('Erreur : ' . $a->getMessage());
+    }
+
+    $thisAccountID = $_SESSION['actualBankID'];
+    $thisOperationID = $_SESSION['actualOperationID'];
+
+
+// Take the infos of the actual account by using the accountID parameter
+    require_once 'database.php';
+    $db = dbConnect();
+    $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
+    $req->execute(array(":thisAccountID"=>$thisAccountID));
+    $thisAccount = $req->fetch();
+
+}
