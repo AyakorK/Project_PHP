@@ -1,5 +1,6 @@
 <?php
     require_once 'Functions/Verification.php';
+    require_once 'Functions/allFunctions.php'
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,6 @@
             <form method="POST" action="Functions/goToBankAccount.php">
                 <select name="account" id="account">
                 <?php
-            require_once 'Functions/listAccount.php';
             $result = listAccount();
             foreach ($result as $row) {
                 echo '<option value="'.$row['accountID'].'">'.$row['accountName'].' : '.$row['soldAccount'].' '.$row['currency'].' </option>';

@@ -27,6 +27,7 @@
 session_start();
 $thisAccountID = $_SESSION['actualBankID'];
 require_once 'Functions/database.php';
+require_once 'Functions/allFunctions.php';
 $db = dbConnect();
 $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
 $req->execute(array(":thisAccountID"=>$thisAccountID));
@@ -34,7 +35,6 @@ $thisAccount = $req->fetch();
 
 // Print the actual sold
 
-    require_once 'Functions/listOperations.php';
     $result = listOperations();
 
         foreach ($result as $row) {
