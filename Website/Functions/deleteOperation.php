@@ -11,9 +11,8 @@ try {
 // Get the user's id and the account's id from the database
 $userID = $_SESSION['actualUserID'];
 $thisAccountID = $_SESSION['actualBankID'];
+$thisOperationID = $_SESSION['actualOperationID'];
 
-if (isset($_GET['id'])) { // If the user clicked on the "Delete" button
-    $thisOperationID = $_GET['id'];
 
     // Get the operation's data from the database
     $query = $db->prepare(  'SELECT O.*, C.categoryType, C.categoryName FROM Operation as O
@@ -22,6 +21,7 @@ if (isset($_GET['id'])) { // If the user clicked on the "Delete" button
                                     WHERE O.operationID = :id LIMIT 1;');
     $query->execute(array('id' => $thisOperationID));
     $accountData = $query->fetch();
+
 
     // Update the account's balance if the operation was a credit else it's a debit
     if ($accountData['categoryType'] == "credit") {
@@ -41,7 +41,7 @@ if (isset($_GET['id'])) { // If the user clicked on the "Delete" button
     $query->execute(array(":operationID" => $thisOperationID));
 
     unset($_SESSION['actualOperationID']); // Update the session variable
-    echo "<script>alert('" . $accountData['categoryName'] . "a été supprimé')</script>";
+    echo "<script>alert('" . $accountData['operationName'] . " a été supprimé')</script>";
     header( "Refresh: 0.5; url=../homepage.php" ) ;
 
-}
+//}

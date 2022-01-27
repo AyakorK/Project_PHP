@@ -9,30 +9,6 @@ try {
     die('Erreur : ' . $a->getMessage());
 }
 
-
-//echo $userID = $_SESSION['actualUserID'] ;
-//echo '</br>';
-//echo $thisAccountID = $_SESSION['actualBankID'];
-
-//if (isset($_GET['id'])) { // If the user clicked on the "Delete" button
-//    $thisOperationID = $_GET['id'];
-//
-//    // Get the operation's data from the database
-//    $query = $db->prepare(  'SELECT O.*, C.categoryType, C.categoryName FROM Operation as O
-//                                    LEFT JOIN Category as C
-//                                        ON C.categoryID = O.categoryID
-//                                    WHERE O.operationID = :id LIMIT 1;');
-//    $query->execute(array('id' => $thisOperationID));
-////    $accountData = $query->fetch();
-//
-//    while ( $accountData = $query->fetch()) {
-//
-//         echo htmlspecialchars($accountData['categoryType']) . '</br>';
-//
-//    }
-//}
-
-
 $thisAccountID = $_SESSION['actualBankID'];
 $thisOperationID = $_SESSION['actualOperationID'];
 
