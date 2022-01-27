@@ -8,6 +8,15 @@ try { // Try to connect to database
     die('Erreur : ' . $e->getMessage());
 }
 
+if(isset($_POST['ModifyOperation'])){
+
+    $thisCategoryID = filter_input(INPUT_POST, 'operationTypeName', FILTER_SANITIZE_STRING);
+    $_SESSION['actualCategoryID'] = htmlspecialchars($thisCategoryID);
+    ModifyOperation();
+    updateBankAccount();
+}
+
+
 // When we click on the addOperation button go to the creation operation page
 if (isset($_POST['addOperation'])){
     header('Location: ../createOperation.php');
@@ -91,4 +100,39 @@ function updateBankAccount() {
 
     echo "<script>alert('" . $_POST['operationName'] . " has been created');</script>" ;
     header("Refresh: .5; url=../homepage.php");
+}
+
+function ModifyOperation() {
+
+    $actualUserID = $_SESSION['actualUserID'];
+    $actualBankID =  $_SESSION['actualBankID'];
+    $categoryID = $_SESSION['actualCategoryID'];
+    $thisOperationID = $_SESSION['actualOperationID'];
+
+    echo $actualUserID . '</br>';
+    echo $actualBankID . '</br>';
+    echo $categoryID . '</br>';
+    echo $thisOperationID . '</br>';
+
+    // Print list of our operations
+    require_once 'database.php';
+    $db = dbConnect();
+    $req = $db->prepare("UPDATE Operation SET
+                    accountID = :accountID,
+                    categoryID = :categoryID,
+                    operationName = :operationName,
+                    operationAmount = :operationAmount,
+                    operationDate = :operationDate
+                    WHERE
+                    operationID = :operationID");
+
+    $req->execute(array(
+        'accountID' => $actualBankID,
+        'categoryID' => $categoryID,
+        'operationName' => $_POST['operationName'],
+        'operationAmount' => $_POST['operationAmount'],
+        'operationDate' => $_POST['operationDate'],
+        'operationID' => $thisOperationID
+    ));
+    echo 'fin';
 }
