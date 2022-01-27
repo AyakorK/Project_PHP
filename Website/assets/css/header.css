@@ -29,6 +29,7 @@ header p {
     padding: 0;
     font-size: 1.5em;
     font-weight: bold;
-    color: rgba(61, 200, 255, 0.801);
+    color: rgba(29, 112, 190, 0.801);
     margin-left: 10px;
+    text-shadow: 5px 5px 10px rgb(73, 73, 73);
 }
