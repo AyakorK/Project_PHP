@@ -11,8 +11,7 @@
     <?php
         session_start();
         $thisAccountID = $_SESSION['actualBankID'];
-        $thisOperationID = $_SESSION['actualOperationID'];
-    
+
     
     // Take the infos of the actual account by using the accountID parameter
     require_once 'Functions/database.php';
@@ -22,6 +21,7 @@
     $thisAccount = $req->fetch();
 
     // Print the actual sold
+    echo $thisAccount['accountID'];
     echo $thisAccount['soldAccount'];
     echo $thisAccount['currency'];
     ?>
@@ -29,7 +29,7 @@
     <form method="POST" action="Functions/manageOperations.php">
         <input type="text" name="operationName" id="operationName" placeholder="Operation name" />
         <input type="text" name="operationAmount" id="operationAmount" placeholder="Operation amount" />
-        <input type="text" name="operationDate" id="operationDate" placeholder="Operation date" />
+        <input type="date" name="operationDate" id="operationDate" placeholder="Operation date" />
         <!-- <select name="operationType" id="operationType">
             <option value="debit">Deposit</option>
             <option value="credit">Withdrawal</option>
