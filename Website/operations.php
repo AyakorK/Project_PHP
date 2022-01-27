@@ -21,7 +21,7 @@
     <form method="POST" action="Functions/manageOperations.php">
     <input class="button" type="submit" name="addOperation" id="addOperation" value="Add a new operation" />
     </form>
-    <div id = "operationsHighlight">
+    <div id ="operationsHighlight">
          <?php
 
 session_start();
@@ -36,17 +36,17 @@ $thisAccount = $req->fetch();
 
     require_once 'Functions/listOperations.php';
     $result = listOperations();
-    $i = 0;
+
         foreach ($result as $row) {
-            if ($i < 5) {
+            
             echo "<div class='operation'>";
-            echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].''.$thisAccount['currency'].'</p>';
+            echo '<span>'.$row['operationName'].' :</span>';
+            echo '<span>'.$row['operationAmount'].''.$thisAccount['currency'].'</span>';
             echo '<span>'.$row['operationDate'].'</span>';
             echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
             echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
             echo '</div>';
-            $i++;
-            }
+       
     }
 
 
