@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/css/form.css">
     <link rel="stylesheet" href="assets/css/bankAccount.css">
     <link rel="stylesheet" href="assets/css/operations.css">
-    
 </head>
 
 <!-- Page that will contain every operations of our account -->
@@ -43,14 +42,18 @@ $thisAccount = $req->fetch();
             echo '<span>'.$row['operationName'].' :</span>';
             echo '<span>'.$row['operationAmount'].''.$thisAccount['currency'].'</span>';
             echo '<span>'.$row['operationDate'].'</span>';
+<<<<<<< Updated upstream
 //            echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
             echo '<a href="Functions/deleteOperation.php">Delete</a>';
 
             echo '<a href="Functions/modifyOperation.php">Modify</a>';
+=======
+            echo '<a class="confirmation" href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete </a>';
+            echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
+>>>>>>> Stashed changes
             echo '</div>';
        
     }
-
 
             ?>
 
@@ -58,4 +61,5 @@ $thisAccount = $req->fetch();
 
     </body>
     <script src="assets/js/header2.js"></script>
+    <script src="assets/js/confirmation.js"></script>
 </html>
