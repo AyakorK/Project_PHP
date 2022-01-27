@@ -42,6 +42,6 @@ $thisOperationID = $_SESSION['actualOperationID'];
 
     unset($_SESSION['actualOperationID']); // Update the session variable
     echo "<script>alert('" . $accountData['operationName'] . " a été supprimé')</script>";
-    header( "Refresh: 0.5; url=../homepage.php" ) ;
+    header( "Refresh: 0.5; url=../operations.php" ) ;
 
 //}

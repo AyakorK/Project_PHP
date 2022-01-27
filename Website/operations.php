@@ -18,13 +18,19 @@
         <img class="user" src="src/user.png" alt="user">
    </header>
 
+   <?php
+   session_start();
+   // Afficher le solde bancaire du compte
+    echo '<h2>Solde : '.$_SESSION['actualSoldAccount'].' '.$_SESSION['actualCurrency'].'</h2>';
+    ?>;
+
     <form method="POST" action="Functions/manageOperations.php">
     <input class="button" type="submit" name="addOperation" id="addOperation" value="Add a new operation" />
     </form>
     <div id ="operationsHighlight">
          <?php
 
-session_start();
+
 $thisAccountID = $_SESSION['actualBankID'];
 require_once 'Functions/database.php';
 require_once 'Functions/allFunctions.php';

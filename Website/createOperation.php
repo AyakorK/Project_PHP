@@ -32,7 +32,7 @@
     <!-- Show actual soldAccount -->
     <?php
     // Print the actual sold
-    echo '<h2> Your sold :';
+    echo '<h2> Your sold : ';
     echo $thisAccount['soldAccount'];
     echo $thisAccount['currency'] . '</h2>';
     ?>
