@@ -34,5 +34,5 @@
         <input type="submit" class="button" name="submitRegister" id="submitRegister"> Register </input>
     </form>
     </body>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/header.js"></script>
     </html>

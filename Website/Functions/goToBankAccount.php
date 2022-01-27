@@ -24,27 +24,34 @@ knowBankData();
 <head>
     <meta charset="utf-8">
     <title>Homepage</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="../assets/css/header.css">
+        <link rel="stylesheet" href="../assets/css/form.css">
+        <link rel="stylesheet" href="../assets/css/bankAccount.css">
 </head>
 <body>
-    <!-- Afficher les informations de ce compte bancaire à partir du select de homepage -->
-    <?php
-        echo $_SESSION['actualAccountName'];
-        echo '</br>';
-        echo $_SESSION['actualAccountType'];
-        echo '</br>';
-        echo $_SESSION['actualSoldAccount'];
-        echo ' ';
-        echo $_SESSION['actualCurrency'];
-        echo '</br>';
-    ?>
-    <button onclick="window.location.href='../operations.php'">Operations</button>
-    <form method="POST" action="deleteVirtualBankAccount.php">
+<header>  
+           <img  class="logo" src="../src/logo.png" alt="logo">
+           <p>PetiotComptable</p>
+           <img class="user" src="../src/user.png" alt="user">
+   </header>
 
-        <input type="submit" name="deleteBankAccount" id="deleteBankAccount" value="Delete this bank account" />
-    </form>
+    <?php
+        echo '<h1>'.$_SESSION['email'].'</h1>';
+        echo '<h2> '.$_SESSION['actualAccountName'].' - '.$_SESSION['actualAccountType'].' : '.$_SESSION['actualSoldAccount'].' '.$_SESSION['actualCurrency'].' </h2>';
+
+    ?>
+    <button class="button" onclick="window.location.href='../operations.php'">Operations</button>
 
     <form method="POST" action="../modifyBankAccount.php">
-        <input type="submit" name=modifyBankAccount id="modifyBankAccount" value="Modify this bank account" />
+        <input class="button" type="submit" name=modifyBankAccount id="modifyBankAccount" value="Modify this bank account" />
     </form>
+
+    <form method="POST" action="deleteVirtualBankAccount.php" onsubmit="if(confirm('Are you sure ?')){return true;}else{return false;}">
+
+        <input class="button"type="submit" name="deleteBankAccount" id="deleteBankAccount" value="Delete this bank account" />
+    </form>
+
+
+</body>
+<script src="../assets/js/header2.js"></script>
+</html>

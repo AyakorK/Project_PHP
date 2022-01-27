@@ -9,7 +9,7 @@
             <title>Homepage</title>
             <link rel="stylesheet" href="assets/css/homepage.css">
             <link rel="stylesheet" href="assets/css/header.css">
-            <script src="script.js"></script>
+            
         </head>
         <body>
             <header>  
@@ -17,9 +17,16 @@
                 <p>PetiotComptable</p>
                 <img class="user" src="src/user.png" alt="user">
             </header>
+            <div class="homepage">
+                <?php
+                // Get the user name and print it out
+                $userName = $_SESSION['email'];
+                echo "<h1>Welcome $userName</h1>";
+
+                ?>
                 <button onclick="window.location.href='bankAccount.php'">Create new bank account</button>
                 <form method="POST" action="Functions/deleteAccount.php" id="deleteButton" onsubmit="if(confirm('Are you sure ?')){return true;}else{return false;}">
-                <input type="submit" name="deleteAccount" id="deleteAccount" value="Delete this account" />
+                <input class="button" type="submit" name="deleteAccount" id="deleteAccount" value="Delete this account" />
                 </form>   
             <div>
             <form method="POST" action="Functions/goToBankAccount.php">
@@ -33,8 +40,9 @@
             $thisAccount = $_POST['accountID']; 
                     ?>
             </select>
-            <input type="submit" name="goToThisAccount" id="goToThisAccount" value="Go to this bank account"></input>
+            <input class="button" type="submit" name="goToThisAccount" id="goToThisAccount" value="Go to this bank account"></input>
             </form>
+            </div>
             
 
             
@@ -42,4 +50,5 @@
 
             
         </body>
+        <script src="assets/js/header2.js"></script>
     </html>
