@@ -1,0 +1,49 @@
+#operationsHighlight {
+    background-color: #001b4e88;
+    max-height: 30rem;
+    width: 40%;
+    height: 30%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    /* Cacher ce qui dépasse de la div */
+    overflow: hidden;
+    /* How to scroll*/
+    overflow-y: scroll;
+    border-radius: 40px;
+    margin-bottom: 30px;
+}
+
+form {
+    margin-top: 0;
+}
+
+.operation {
+    background-color: #c6d3ff5e;
+    border-radius: 4px;
+    padding: 2px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50px;
+}
+
+.operation span {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgba(0, 26, 110, 0.788);
+    margin-bottom: 6px;
+}
+
+.operation a {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(46, 8, 151);
+}

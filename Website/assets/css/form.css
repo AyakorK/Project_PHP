@@ -1,0 +1,103 @@
+body {
+    background-image: url("../../src/login.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    width: 100%;
+    height: 80%;
+    padding-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.formText {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+}
+
+input {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 0 30px black;
+    border-radius: 20px;
+    text-align: center;
+}
+
+input:focus {
+    background-color: #fff8e6;
+    outline: none;
+    border: 2px solid rgba(221, 221, 221, 0.637);
+    transition: .3s;
+}
+
+.button {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #dfdfdf;
+    border: none;
+    box-shadow: 0 0 30px black;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.button:hover {
+    background-color: #dfdfdf;
+    cursor: pointer;
+    font-size: 2.1em;
+    transition: 1s;
+}
+
+select {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 0 30px black;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.formText2 {
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
