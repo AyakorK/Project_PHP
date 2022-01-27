@@ -57,6 +57,7 @@ function accountCurrency(){
     }
 }
 
+// To avoid HTML tags and special characters
 function testInput($inputField){
     $inputField = htmlspecialchars(stripcslashes(strip_tags ($inputField)));
     return $inputField;
@@ -87,4 +88,47 @@ function requireModifyOperation(){
     $req->execute(array(":thisAccountID"=>$thisAccountID));
     $thisAccount = $req->fetch();
 
+}
+
+// Show all user bank account
+function listAccount()
+{
+    session_start();
+    echo '<p>Hello ' . $_SESSION['actualUserID'] . '</p>';
+    $actualUserID = $_SESSION['actualUserID'];
+    // Print list of our accounts
+    require_once 'Functions/database.php';
+    $db = dbConnect();
+    $req = $db->query("SELECT * FROM bankAccount WHERE userID = $actualUserID");
+    $req->execute();
+    $result = $req->fetchAll();
+
+    return $result;
+}
+
+// Show all categories
+function listCategory()
+{
+    require_once 'database.php';
+    $db = dbConnect();
+    $req = $db->query("SELECT * FROM Category");
+    $req->execute();
+    $result = $req->fetchAll();
+    return $result;
+}
+
+// Make a function to get every operation of our account
+function listOperations() {
+
+    $actualUserID = $_SESSION['actualUserID'];
+    $actualBankID =  $_SESSION['actualBankID'];
+
+    // Print list of our operations
+    require_once 'database.php';
+
+    $db = dbConnect();
+    $req = $db->query("SELECT * FROM Operation WHERE accountID = $actualBankID ORDER BY operationDate DESC");
+    $req->execute();
+    $result = $req->fetchAll();
+    return $result;
 }
