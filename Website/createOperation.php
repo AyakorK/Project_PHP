@@ -1,3 +1,18 @@
+<?php
+        session_start();
+        $thisAccountID = $_SESSION['actualBankID'];
+
+
+    // Take the infos of the actual account by using the accountID parameter
+    require_once 'Functions/database.php';
+    require_once 'Functions/allFunctions.php';
+    $db = dbConnect();
+    $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
+    $req->execute(array(":thisAccountID"=>$thisAccountID));
+    $thisAccount = $req->fetch();
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,17 +31,6 @@
    </header>
     <!-- Show actual soldAccount -->
     <?php
-        session_start();
-        $thisAccountID = $_SESSION['actualBankID'];
-
-    
-    // Take the infos of the actual account by using the accountID parameter
-    require_once 'Functions/database.php';
-    $db = dbConnect();
-    $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
-    $req->execute(array(":thisAccountID"=>$thisAccountID));
-    $thisAccount = $req->fetch();
-
     // Print the actual sold
     echo '<h2> Your sold :';
     echo $thisAccount['soldAccount'];
@@ -46,7 +50,6 @@
     <div class="formText2">
         <select name="operationTypeName" id="operationTypeName">
         <?php
-        require_once 'Functions/listCategory.php';
         $result = listCategory();
         foreach ($result as $row) {
              echo '<option value="'.$row['categoryID'].'">'.$row['categoryName'].' ('.$row['categoryType'].')</option>';
