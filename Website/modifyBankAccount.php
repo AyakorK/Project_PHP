@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'Functions/bankAccountFunctions.php';
+    require_once 'Functions/allFunctions.php';
     knowBankData();
 ?>
 

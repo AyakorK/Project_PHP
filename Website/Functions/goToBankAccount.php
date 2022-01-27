@@ -15,7 +15,7 @@ if (isset($_POST['goToThisAccount'])){
     $account = $req->fetch();
 }
 
-require_once 'bankAccountFunctions.php';
+require_once 'allFunctions.php';
 knowBankData();
 ?>
 

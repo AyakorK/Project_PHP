@@ -1,7 +1,7 @@
 <?php
 
 require_once 'database.php';
-require_once 'bankAccountFunctions.php';
+require_once 'allFunctions.php';
 function insertBankAccount()
 {
     session_start();
