@@ -20,5 +20,5 @@
         <button class="connect" onclick="window.location.href='login.php'">Connection</button>
         <button class="register" onclick="window.location.href='register.php'">Register</button>
       </body>
-      <script src="script.js"></script>
+      <script src="assets/js/header.js"></script>
     </html>

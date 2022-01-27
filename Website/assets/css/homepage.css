@@ -1,5 +1,5 @@
 body {
-    background-image: url("../../src/homepageGradient.jpg");
+    background-image: url("../../src/homepageBG.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -9,6 +9,7 @@ body {
     padding: 0;
 }
 
+button,
 .button {
     font-size: 2em;
     font-weight: bold;
@@ -19,11 +20,36 @@ body {
     border-radius: 20px;
     text-align: center;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
+button:hover,
 .button:hover {
     background-color: #dfdfdf;
     cursor: pointer;
     font-size: 2.1em;
     transition: 1s;
+}
+
+select {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 0 30px black;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.homepage {
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
 }
