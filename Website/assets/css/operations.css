@@ -1,6 +1,6 @@
 #operationsHighlight {
     background-color: #001b4e88;
-    max-height: 600px;
+    max-height: 580px;
     width: 40%;
     margin-left: 50%;
     transform: translateX(-50%);
@@ -9,6 +9,7 @@
     /* How to scroll*/
     overflow-y: scroll;
     border-radius: 40px;
+    margin-bottom: 30px;
 }
 
 form {
