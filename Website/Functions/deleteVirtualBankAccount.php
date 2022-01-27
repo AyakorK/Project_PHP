@@ -27,8 +27,8 @@ if (isset($_POST['deleteBankAccount'])) { // If the user clicked on the "Delete"
     $query->execute(array(":accountID"=>$thisAccountID));
 
     unset($_SESSION['thisAccountID']); // End the session of this Virtual Bank Account
-    echo "<script>alert('" . $dataAccount[0]['accountName'] . "a été supprimé')</script>";
-    //header( "Refresh: 0.5; url=../homepage.php" ) ;
+    echo "<script>alert('" . $dataAccount[0]['accountName'] . " a été supprimé')</script>";
+    header( "Refresh: 0.5; url=../homepage.php" ) ;
 
 
 }
