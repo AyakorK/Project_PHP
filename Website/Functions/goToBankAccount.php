@@ -3,6 +3,7 @@ require_once 'Verification.php';
 
 if (isset($_POST['goToThisAccount'])){
 
+    // Get the accountID and saving it in a session variable
     $thisAccountID = filter_input(INPUT_POST, 'account', FILTER_SANITIZE_STRING);
     $_SESSION['actualBankID'] = htmlspecialchars($thisAccountID);
 
@@ -15,6 +16,7 @@ if (isset($_POST['goToThisAccount'])){
     $account = $req->fetch();
 }
 
+// Make a function to get every details of our account
 require_once 'allFunctions.php';
 knowBankData();
 ?>
@@ -36,6 +38,7 @@ knowBankData();
    </header>
     <div class="formText2">
     <?php
+        // Print the user email and the actual sold
         echo '<h1> Account : '.$_SESSION['email'].'</h1>';
         echo '<h2> Bank Account : '.$_SESSION['actualAccountName'].' - '.$_SESSION['actualAccountType'].' : '.$_SESSION['actualSoldAccount'].' '.$_SESSION['actualCurrency'].' </h2>';
 

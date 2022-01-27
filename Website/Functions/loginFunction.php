@@ -20,6 +20,7 @@ if ($emailExists == true) {
 
     // If the password is correct
     if ($passwordCorrect) {
+
         // Create a session with the user's email
         session_start();
         $_SESSION['email'] = $emailLogin;
@@ -32,14 +33,19 @@ if ($emailExists == true) {
 
         // Redirect the user to the home page
         header("Location: ../homepage.php");
+
     } else {
+
         // Alert that the password is incorrect
         echo '<script>alert("Password is incorrect");</script>';
         header("Refresh: 0.5; url=../login.php");
+
     }
 } else {
+
     // Alert that the email is incorrect
     echo '<script>alert("E-mail is incorrect");</script>';
     header("Refresh: 0.5; url=../login.php");
+    
 }
 

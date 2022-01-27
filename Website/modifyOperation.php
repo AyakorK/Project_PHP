@@ -33,6 +33,7 @@
     <div class="formText2">
     <select name="operationTypeName" id="operationTypeName">
         <?php
+        // Show all the operation types
         $result = listCategory();
         foreach ($result as $row) {
             echo '<option value="'.$row['categoryID'].'">'.$row['categoryName'].' ('.$row['categoryType'].')</option>';

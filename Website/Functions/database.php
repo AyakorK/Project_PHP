@@ -1,6 +1,7 @@
 <?php
 
-function dbConnect(){ // Connect to the database
+function dbConnect(){ 
+    // Connect to the database
     try {
         $host = 'mysql-mkpdphp.alwaysdata.net';
         $dbname = 'mkpdphp_petiotcomptable';

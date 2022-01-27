@@ -29,7 +29,10 @@
     <div class="formText2">
     <label> Account type </label>
     <select name="accountType">
-        <?php accountType() ?>
+        <?php 
+        // Get all the account types
+        accountType() 
+        ?>
     </select>
     </div>
     <div class="formText2">
@@ -39,7 +42,10 @@
     <div class="formText2">
     <label> Account currency </label>
     <select name="accountCurrency">
-        <?php accountCurrency() ?>
+        <?php 
+        // Get all the account currencies
+        accountCurrency() 
+        ?>
     </select>
     </div>
     <input type="submit" name='submitBankAccount' value="Modify Bank Account" />

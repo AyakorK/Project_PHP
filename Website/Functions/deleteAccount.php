@@ -1,5 +1,6 @@
 <?php
-try { // Try to connect to database
+try {
+     // Try to connect to database
     session_start();
     include_once 'database.php';
     $db = dbConnect();
@@ -17,6 +18,7 @@ if (isset($_POST['deleteAccount'])) {
     $query->bindParam(':userID', $userID);
     $query->execute();
 
+    // Close the session and alert the user that account has been deleted
     session_destroy();
     echo "<script>alert('Your Account has been deleted.');</script>";
     header( "Refresh: 0.5; url=../index.php" ) ;

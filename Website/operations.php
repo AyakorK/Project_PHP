@@ -20,7 +20,7 @@
 
    <?php
    session_start();
-   // Afficher le solde bancaire du compte
+   // Print the acutal sold of the account
     echo '<h2>Solde : '.$_SESSION['actualSoldAccount'].' '.$_SESSION['actualCurrency'].'</h2>';
     ?>;
 
@@ -30,8 +30,10 @@
     <div id ="operationsHighlight">
          <?php
 
-
+// Get the ID of the bankAccount
 $thisAccountID = $_SESSION['actualBankID'];
+
+
 require_once 'Functions/database.php';
 require_once 'Functions/allFunctions.php';
 $db = dbConnect();
@@ -39,10 +41,10 @@ $req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID"
 $req->execute(array(":thisAccountID"=>$thisAccountID));
 $thisAccount = $req->fetch();
 
-// Print the actual sold
-
+    // List all operations
     $result = listOperations();
 
+    // Print all operations
         foreach ($result as $row) {
 
             echo "<div class='operation'>";
