@@ -34,10 +34,10 @@ form {
     border-radius: 50px;
 }
 
-.operation p {
-    font-size: 1.5em;
+.operation span {
+    font-size: 1.2em;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: rgba(0, 26, 110, 0.788);
     margin-bottom: 6px;
 }
 
@@ -45,5 +45,5 @@ form {
     margin-top: 20px;
     font-size: 1.5em;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: rgb(46, 8, 151);
 }
