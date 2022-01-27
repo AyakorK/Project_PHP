@@ -41,7 +41,10 @@ function addOperation() {
         'categoryID' => $categoryID,
         'operationName' => $_POST['operationName'],
         'operationAmount' => $_POST['operationAmount'],
-        'operationDate' => $_POST['operationDate'],
-        
+        'operationDate' => $_POST['operationDate']
     ));
+
+        echo "<script>alert('" . $_POST['operationName'] . " has been created');</script>" ;
+        header("Refresh: .5; url=../homepage.php");
+
 }
