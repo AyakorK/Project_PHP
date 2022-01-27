@@ -13,7 +13,12 @@ if(isset($_POST['ModifyOperation'])){
     $thisCategoryID = filter_input(INPUT_POST, 'operationTypeName', FILTER_SANITIZE_STRING);
     $_SESSION['actualCategoryID'] = htmlspecialchars($thisCategoryID);
     ModifyOperation();
-    updateBankAccount();
+    if(ModifyOperation()==false){
+        echo "<script>alert('Operation name is not valid, Special characters are not allowed');</script>";
+        header("Refresh: .5; url=../operations.php");
+    }else if (ModifyOperation()){
+        updateBankAccount();
+    }
 }
 
 
@@ -28,14 +33,20 @@ if (isset($_POST['addNewOperation'])){
     $_SESSION['actualCategoryID'] = htmlspecialchars($thisCategoryID);
 //    echo $_SESSION['actualCategoryID'];
     addOperation();
-    updateBankAccount();
+    if(addOperation()==false){
+        echo "<script>alert('Operation name is not valid, Special characters are not allowed');</script>";
+        header("Refresh: .5; url=../operations.php");
+    }else if (addOperation()){
+        updateBankAccount();
+    }
 }
 // Add an operation to our account
 
 
 function addOperation() {
     // Redirect to the creation Page
-    
+    require_once 'allFunctions.php';
+
     $actualUserID = $_SESSION['actualUserID'];
     $actualBankID =  $_SESSION['actualBankID'];
     $categoryID = $_SESSION['actualCategoryID'];
@@ -43,42 +54,56 @@ function addOperation() {
     $operationAmount = $_POST['operationAmount'];
     $operationDate = $_POST['operationDate'];
 
+    $categoryID = testInput($categoryID);
+    $operationName = testInput($operationName);
+    $operationAmount = testInput($operationAmount);
+    $operationDate = testInput($operationDate);
 
-    
-    // Print list of our operations
-    // Verify is datas that are written are valid
-   if (is_numeric($operationAmount) && is_string($operationName)) {
-    require_once 'database.php';
-    $db = dbConnect();
-    $req = $db->prepare("INSERT INTO Operation (accountID, categoryID, operationName, operationAmount, operationDate) VALUES (:accountID, :categoryID, :operationName, :operationAmount, :operationDate)");
-    $req->execute(array(
-        'accountID' => $actualBankID,
-        'categoryID' => $categoryID,
-        'operationName' => $operationName,
-        'operationAmount' => $operationAmount,
-        'operationDate' => $operationDate
-    ));
+    if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $operationName)) {
 
-    // Récupérer l'ID de la dernière opération
-    $req = $db->prepare("SELECT operationID FROM Operation WHERE operationName = :operationName AND operationAmount = :operationAmount AND operationDate = :operationDate AND accountID = :accountID AND categoryID = :categoryID");
-    $req->execute(array(
-        'operationName' => $operationName,
-        'operationAmount' => $operationAmount,
-        'operationDate' => $operationDate,
-        'accountID' => $actualBankID,
-        'categoryID' => $categoryID
-    ));
-    $result = $req->fetch();
-    $_SESSION['actualOperationID'] = $result['operationID'];
-} else if (!is_numeric($operationAmount)) {
-    echo '<script>alert("The amount must be a number")</script>';
-    // Redirect to the createOperation page after 0.5 second
-    header('Refresh: 0.5; URL=../createOperation.php');
-} else if (!is_string($operationName)) {
-    echo '<script>alert("The name must be a text")</script>';
-    // Redirect to the createOperation page after 0.5 second
-    header('Refresh: 0.5; URL=../createOperation.php');
-}
+        return false;
+    }else {
+
+
+        // Print list of our operations
+        // Verify is datas that are written are valid
+        if (is_numeric($operationAmount) && is_string($operationName)) {
+            require_once 'database.php';
+            $db = dbConnect();
+            $req = $db->prepare("INSERT INTO Operation (accountID, categoryID, operationName, operationAmount, operationDate) VALUES (:accountID, :categoryID, :operationName, :operationAmount, :operationDate)");
+            $req->execute(array(
+                'accountID' => $actualBankID,
+                'categoryID' => $categoryID,
+                'operationName' => $operationName,
+                'operationAmount' => $operationAmount,
+                'operationDate' => $operationDate
+            ));
+
+            // Récupérer l'ID de la dernière opération
+            $req = $db->prepare("SELECT operationID FROM Operation WHERE operationName = :operationName AND operationAmount = :operationAmount AND operationDate = :operationDate AND accountID = :accountID AND categoryID = :categoryID");
+            $req->execute(array(
+                'operationName' => $operationName,
+                'operationAmount' => $operationAmount,
+                'operationDate' => $operationDate,
+                'accountID' => $actualBankID,
+                'categoryID' => $categoryID
+            ));
+            $result = $req->fetch();
+            $_SESSION['actualOperationID'] = $result['operationID'];
+            return true;
+        } else if (!is_numeric($operationAmount)) {
+            echo '<script>alert("The amount must be a number")</script>';
+            // Redirect to the createOperation page after 0.5 second
+            header('Refresh: 0.5; URL=../createOperation.php');
+            return false;
+        } else if (!is_string($operationName)) {
+            echo '<script>alert("The name must be a text")</script>';
+            // Redirect to the createOperation page after 0.5 second
+            header('Refresh: 0.5; URL=../createOperation.php');
+            return false;
+        }
+        return false;
+    }
 }
 
 
@@ -121,22 +146,36 @@ function updateBankAccount() {
 }
 }
 
-function ModifyOperation() {
+function ModifyOperation()
+{
+require_once 'allFunctions.php';
 
     $actualUserID = $_SESSION['actualUserID'];
-    $actualBankID =  $_SESSION['actualBankID'];
+    $actualBankID = $_SESSION['actualBankID'];
     $categoryID = $_SESSION['actualCategoryID'];
     $thisOperationID = $_SESSION['actualOperationID'];
+    $operationName = $_POST['operationName'];
+    $operationAmount = $_POST['operationAmount'];
+    $operationDate = $_POST['operationDate'];
 
-//    echo $actualUserID . '</br>';
-//    echo $actualBankID . '</br>';
-//    echo $categoryID . '</br>';
-//    echo $thisOperationID . '</br>';
+    $categoryID = testInput($categoryID);
+    $operationName = testInput($operationName);
+    $operationAmount = testInput($operationAmount);
+    $operationDate = testInput($operationDate);
 
-    // Print list of our operations
-    require_once 'database.php';
-    $db = dbConnect();
-    $req = $db->prepare("UPDATE Operation SET
+    if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $operationName)) {
+
+        return false;
+    } else {
+
+
+        // Print list of our operations
+        // Verify is datas that are written are valid
+        if (is_numeric($operationAmount) && is_string($operationName)) {
+        // Print list of our operations
+        require_once 'database.php';
+        $db = dbConnect();
+        $req = $db->prepare("UPDATE Operation SET
                     accountID = :accountID,
                     categoryID = :categoryID,
                     operationName = :operationName,
@@ -145,13 +184,26 @@ function ModifyOperation() {
                     WHERE
                     operationID = :operationID");
 
-    $req->execute(array(
-        'accountID' => $actualBankID,
-        'categoryID' => $categoryID,
-        'operationName' => $_POST['operationName'],
-        'operationAmount' => $_POST['operationAmount'],
-        'operationDate' => $_POST['operationDate'],
-        'operationID' => $thisOperationID
-    ));
-//    echo 'fin';
+        $req->execute(array(
+            'accountID' => $actualBankID,
+            'categoryID' => $categoryID,
+            'operationName' => $operationName,
+            'operationAmount' => $operationAmount,
+            'operationDate' => $operationDate,
+            'operationID' => $thisOperationID
+        ));
+            return true;
+        } else if (!is_numeric($operationAmount)) {
+            echo '<script>alert("The amount must be a number")</script>';
+            // Redirect to the createOperation page after 0.5 second
+            header('Refresh: 0.5; URL=../createOperation.php');
+            return false;
+        } else if (!is_string($operationName)) {
+            echo '<script>alert("The name must be a text")</script>';
+            // Redirect to the createOperation page after 0.5 second
+            header('Refresh: 0.5; URL=../createOperation.php');
+            return false;
+        }
+        return false;
+    }
 }
