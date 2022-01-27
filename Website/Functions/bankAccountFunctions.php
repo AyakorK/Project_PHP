@@ -56,3 +56,12 @@ function accountCurrency(){
         echo '<option value="eur">EUR</option>';
     }
 }
+
+function testInput($inputField){
+    $inputField = htmlspecialchars(stripcslashes(strip_tags ($inputField)));
+    return $inputField;
+
+    //  htmlspecialchars : string methode to not execute html tags
+    //  stripcslashes : string method to delete \ from a string
+    //  strip_tags : string method to delete html tags < >
+}
