@@ -99,7 +99,7 @@ function updateBankAccount() {
     }
 
     echo "<script>alert('" . $_POST['operationName'] . " has been created');</script>" ;
-    header("Refresh: .5; url=../homepage.php");
+    header("Refresh: .5; url=../operations.php");
 }
 
 function ModifyOperation() {

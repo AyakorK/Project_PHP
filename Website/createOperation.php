@@ -18,7 +18,7 @@
     <?php
         session_start();
         $thisAccountID = $_SESSION['actualBankID'];
-    
+
     
     // Take the infos of the actual account by using the accountID parameter
     require_once 'Functions/database.php';
@@ -28,8 +28,9 @@
     $thisAccount = $req->fetch();
 
     // Print the actual sold
+    echo '<h2> Your sold :';
     echo $thisAccount['soldAccount'];
-    echo $thisAccount['currency'];
+    echo $thisAccount['currency'] . '</h2>';
     ?>
 
     <form method="POST" action="Functions/manageOperations.php">
