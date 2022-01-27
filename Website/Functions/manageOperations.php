@@ -13,6 +13,10 @@ if (isset($_POST['addOperation'])){
     header('Location: ../createOperation.php');
 }
 
+if (isset($_POST['deleteOperation'])) {
+    echo 'coucou';
+}
+
 if (isset($_POST['addNewOperation'])){
 
     $thisCategoryID = filter_input(INPUT_POST, 'operationTypeName', FILTER_SANITIZE_STRING);
@@ -91,4 +95,38 @@ function updateBankAccount() {
 
     echo "<script>alert('" . $_POST['operationName'] . " has been created');</script>" ;
     header("Refresh: .5; url=../homepage.php");
+}
+
+
+function deleteBankAccount() {
+    $thisOperationID = $_SESSION['actualOperationID'];
+
+    $query = $db->prepare(  'SELECT O.*, C.categoryType, C.categoryName FROM Operation as O
+    LEFT JOIN Category as C
+        ON C.categoryID = O.categoryID
+    WHERE O.operationID = :id LIMIT 1;');
+    $query->execute(array('id' => $thisOperationID));
+    $accountData = $query->fetch();
+
+    // Update the account's balance if the operation was a credit else it's a debit
+    if ($accountData['categoryType'] == "credit") {
+    $query = $db->prepare("UPDATE bankAccount SET soldAccount = soldAccount - :operationAmount WHERE accountID = :accountID");
+    $query->execute(array(
+    ":operationAmount"  => $accountData['operationAmount'],
+    ":accountID"        => $accountData['accountID']));
+    } else {
+    $query = $db->prepare(  "UPDATE bankAccount SET soldAccount = soldAccount + :operationAmount WHERE accountID = :accountID");
+    $query->execute(array(
+    ":operationAmount"  => $accountData['operationAmount'],
+    ":accountID"        => $accountData['accountID']));
+    }
+
+    // Delete the Operation from the database
+    $query = $db->prepare("DELETE FROM Operation WHERE operationID = :operationID");
+    $query->execute(array(":operationID" => $thisOperationID));
+
+    unset($_SESSION['actualOperationID']); // Update the session variable
+    echo "<script>alert('" . $accountData['categoryName'] . "a été supprimé')</script>";
+    header( "Refresh: 0.5; url=../homepage.php" ) ;
+
 }
