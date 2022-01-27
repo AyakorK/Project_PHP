@@ -26,7 +26,7 @@ if (isset($_POST['addNewOperation'])){
 
     $thisCategoryID = filter_input(INPUT_POST, 'operationTypeName', FILTER_SANITIZE_STRING);
     $_SESSION['actualCategoryID'] = htmlspecialchars($thisCategoryID);
-    echo $_SESSION['actualCategoryID'];
+//    echo $_SESSION['actualCategoryID'];
     addOperation();
     updateBankAccount();
 }
@@ -75,7 +75,7 @@ function updateBankAccount() {
 
     $db = dbConnect();
 
-    echo $thisOperationID;
+//    echo $thisOperationID;
 
     // Get the operation's data from the database
     $query = $db->prepare(  'SELECT O.*, C.categoryType, C.categoryName FROM Operation as O
@@ -109,10 +109,10 @@ function ModifyOperation() {
     $categoryID = $_SESSION['actualCategoryID'];
     $thisOperationID = $_SESSION['actualOperationID'];
 
-    echo $actualUserID . '</br>';
-    echo $actualBankID . '</br>';
-    echo $categoryID . '</br>';
-    echo $thisOperationID . '</br>';
+//    echo $actualUserID . '</br>';
+//    echo $actualBankID . '</br>';
+//    echo $categoryID . '</br>';
+//    echo $thisOperationID . '</br>';
 
     // Print list of our operations
     require_once 'database.php';
@@ -134,5 +134,5 @@ function ModifyOperation() {
         'operationDate' => $_POST['operationDate'],
         'operationID' => $thisOperationID
     ));
-    echo 'fin';
+//    echo 'fin';
 }
