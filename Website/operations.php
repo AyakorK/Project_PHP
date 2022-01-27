@@ -44,7 +44,7 @@ $thisAccount = $req->fetch();
             echo '<span>'.$row['operationAmount'].''.$thisAccount['currency'].'</span>';
             echo '<span>'.$row['operationDate'].'</span>';
             echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
-            echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
+            echo '<a href="Functions/modifyOperation.php">Modify</a>';
             echo '</div>';
        
     }
