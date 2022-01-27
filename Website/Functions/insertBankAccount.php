@@ -4,12 +4,13 @@ require_once 'database.php';
 require_once 'allFunctions.php';
 function insertBankAccount()
 {
+    // Start the session
     session_start();
     $actualUserID = $_SESSION['actualUserID'];
 
     if (isset($_POST['submitBankAccount'])) {
         $db = dbConnect();
-
+        // Get the values of the form
         $accName = $_POST['accountName'];
         $accType = $_POST['accountType'];
         $SoldAccount = $_POST['accountSold'];
@@ -25,6 +26,7 @@ function insertBankAccount()
         // Check if all input are valid
         if(preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$accName) or preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$accType) or preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$SoldAccount) or preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$accCurrency)){
 
+            // If it is not then print that it's an invalid value
             echo "<script>alert('This bank account is not valid, Special characters not allowed');</script>";
             header("Refresh: .5; url=../homepage.php");
         }
