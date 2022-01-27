@@ -11,6 +11,7 @@ try {
 // Get the user's id and the account's id from the database
 $userID = $_SESSION['actualUserID'];
 $thisAccountID = $_SESSION['actualBankID'];
+$_SESSION['actualOperationID'] = $_GET['id'];
 $thisOperationID = $_SESSION['actualOperationID'];
 
 

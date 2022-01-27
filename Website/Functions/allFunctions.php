@@ -77,8 +77,11 @@ function requireModifyOperation(){
         die('Erreur : ' . $a->getMessage());
     }
 
+
+    $_SESSION['actualOperationID'] = $_GET['id'];
     $thisAccountID = $_SESSION['actualBankID'];
     $thisOperationID = $_SESSION['actualOperationID'];
+//    echo $thisOperationID;
 
 
 // Take the infos of the actual account by using the accountID parameter

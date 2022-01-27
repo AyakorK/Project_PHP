@@ -38,17 +38,16 @@ $thisAccount = $req->fetch();
     $result = listOperations();
 
         foreach ($result as $row) {
-            
+
             echo "<div class='operation'>";
             echo '<span>'.$row['operationName'].' :</span>';
             echo '<span>'.$row['operationAmount'].''.$thisAccount['currency'].'</span>';
             echo '<span>'.$row['operationDate'].'</span>';
-            echo '<a href="Functions/deleteOperation.php">Delete</a>';
-            echo '<a href="modifyOperation.php">Modify</a>';
+//            echo '<a href="Functions/deleteOperation.php">Delete</a>';
+            echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Deletes</a>';
+            echo '<a href="modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
             echo '</div>';
-       
     }
-
 
             ?>
 
