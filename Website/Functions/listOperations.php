@@ -9,7 +9,7 @@ function listOperations() {
     require_once 'database.php';
 
     $db = dbConnect();
-    $req = $db->query("SELECT * FROM Operation WHERE accountID = $actualBankID");
+    $req = $db->query("SELECT * FROM Operation WHERE accountID = $actualBankID ORDER BY operationDate DESC");
     $req->execute();
     $result = $req->fetchAll();
     return $result;
