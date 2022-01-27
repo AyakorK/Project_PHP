@@ -18,7 +18,6 @@
     <?php
         session_start();
         $thisAccountID = $_SESSION['actualBankID'];
-        $thisOperationID = $_SESSION['actualOperationID'];
     
     
     // Take the infos of the actual account by using the accountID parameter
@@ -43,10 +42,6 @@
     <div class="formText2">
         <input type="date" name="operationDate" id="operationDate" placeholder="Operation date" />
     </div>
-        <!-- <select name="operationType" id="operationType">
-            <option value="debit">Deposit</option>
-            <option value="credit">Withdrawal</option>
-        </select> -->
     <div class="formText2">
         <select name="operationTypeName" id="operationTypeName">
         <?php
