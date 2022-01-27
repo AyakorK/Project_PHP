@@ -20,7 +20,7 @@
             </header>
             <div class="homepage">
                 <?php
-                // Get the user name and print it out
+                // Get the Username and print it out
                 $userName = $_SESSION['email'];
                 echo "<h1>Welcome $userName</h1>";
 
@@ -33,7 +33,9 @@
             <form method="POST" action="Functions/goToBankAccount.php">
                 <select name="account" id="account">
                 <?php
+            // Get all the bank accounts of the user
             $result = listAccount();
+            // Print the bank accounts
             foreach ($result as $row) {
                 echo '<option value="'.$row['accountID'].'">'.$row['accountName'].' : '.$row['soldAccount'].' '.$row['currency'].' </option>';
             }

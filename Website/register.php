@@ -10,13 +10,10 @@
 
     <body>
 
-        <header>
-           
+        <header>       
                 <img  class="logo" src="src/logo.png" alt="logo">
                 <p>PetiotComptable</p>
-                <img class="user" src="src/user.png" alt="user">
-                
-        
+                <img class="user" src="src/user.png" alt="user">     
         </header>
     <form class="thisForm" method="POST" action="Functions/insertRegister.php">
     <div class="formText">
