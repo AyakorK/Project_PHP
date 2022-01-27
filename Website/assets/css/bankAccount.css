@@ -8,3 +8,25 @@ body {
     margin: 0;
     padding: 0;
 }
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(88, 88, 88);
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(88, 88, 88);
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

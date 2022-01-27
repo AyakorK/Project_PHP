@@ -34,13 +34,14 @@ knowBankData();
            <p>PetiotComptable</p>
            <img class="user" src="../src/user.png" alt="user">
    </header>
-
+    <div class="formText2">
     <?php
-        echo '<h1>'.$_SESSION['email'].'</h1>';
-        echo '<h2> '.$_SESSION['actualAccountName'].' - '.$_SESSION['actualAccountType'].' : '.$_SESSION['actualSoldAccount'].' '.$_SESSION['actualCurrency'].' </h2>';
+        echo '<h1> Account : '.$_SESSION['email'].'</h1>';
+        echo '<h2> Bank Account : '.$_SESSION['actualAccountName'].' - '.$_SESSION['actualAccountType'].' : '.$_SESSION['actualSoldAccount'].' '.$_SESSION['actualCurrency'].' </h2>';
 
     ?>
     <button class="button" onclick="window.location.href='../operations.php'">Operations</button>
+</div>
 
     <form method="POST" action="../modifyBankAccount.php">
         <input class="button" type="submit" name=modifyBankAccount id="modifyBankAccount" value="Modify this bank account" />

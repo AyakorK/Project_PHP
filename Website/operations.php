@@ -3,25 +3,57 @@
 <head>
     <meta charset="utf-8">
     <title>Homepage</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+    <link rel="stylesheet" href="assets/css/bankAccount.css">
+    <link rel="stylesheet" href="assets/css/operations.css">
+    
 </head>
 
 <!-- Page that will contain every operations of our account -->
 <body>
+    <header> 
+        <img  class="logo" src="src/logo.png" alt="logo">
+        <p>PetiotComptable</p>
+        <img class="user" src="src/user.png" alt="user">
+   </header>
 
     <form method="POST" action="Functions/manageOperations.php">
-    <input type="submit" name="addOperation" id="addOperation" value="Add a new operation" />
+    <input class="button" type="submit" name="addOperation" id="addOperation" value="Add a new operation" />
     </form>
-    <div>
+    <div id = "operationsHighlight">
          <?php
+
+session_start();
+$thisAccountID = $_SESSION['actualBankID'];
+require_once 'Functions/database.php';
+$db = dbConnect();
+$req = $db->prepare("SELECT * FROM bankAccount WHERE accountID = :thisAccountID");
+$req->execute(array(":thisAccountID"=>$thisAccountID));
+$thisAccount = $req->fetch();
+
+// Print the actual sold
+
     require_once 'Functions/listOperations.php';
     $result = listOperations();
-    foreach ($result as $row) {
-        echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].' '.$row['operationDate'].'</p>';
-        echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
-        echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
+    $i = 0;
+        foreach ($result as $row) {
+            if ($i < 5) {
+            echo "<div class='operation'>";
+            echo '<p>'.$row['operationName'].' : '.$row['operationAmount'].''.$thisAccount['currency'].'</p>';
+            echo '<span>'.$row['operationDate'].'</span>';
+            echo '<a href="Functions/deleteOperation.php?id='.$row['operationID'].'">Delete</a>';
+            echo '<a href="Functions/modifyOperation.php?id='.$row['operationID'].'">Modify</a>';
+            echo '</div>';
+            $i++;
+            }
     }
+
+
             ?>
 
     </div>
+
+    </body>
+    <script src="assets/js/header2.js"></script>
+</html>

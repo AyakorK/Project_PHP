@@ -23,6 +23,8 @@ if (isset($_POST['addNewOperation'])){
     addOperation();
 }
 // Add an operation to our account
+
+
 function addOperation() {
     // Redirect to the creation Page
     
