@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'database.php';
+require_once 'allFunctions.php';
 
 if (isset($_POST['submitBankAccount'])) {
     $db = dbConnect();
@@ -11,6 +12,11 @@ if (isset($_POST['submitBankAccount'])) {
     $accType = $_POST['accountType'];
     $SoldAccount = $_POST['accountSold'];
     $accCurrency = $_POST['accountCurrency'];
+
+    $accName = testInput($accName);
+    $accType = testInput($accType);
+    $SoldAccount = testInput($SoldAccount);
+    $accCurrency = testInput($accCurrency);
 
     // Check if all input are valid
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $accName) or preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $accType) or preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $SoldAccount) or preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $accCurrency)) {
