@@ -50,5 +50,5 @@
 
             
         </body>
-        <script src="assets/js/header2.js"></script>
+
     </html>
