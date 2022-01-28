@@ -5,8 +5,8 @@
 
 ```bash
 Fork the file
-Launch a localhost using mamp and launch Project_PHP then Website
-Create an account and manage your bank accounts !
+Launch a localhost using mamp and launch Project_PHP - Website
+Create an account - manage your bank accounts !
 ```
 
 ## Explainations 
